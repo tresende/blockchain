@@ -3,17 +3,13 @@ services:
     java:
         volumes:
           - ./:/app
-        image: java
+        image: java/nodemon
         ports: ['8080:8080']
         container_name: eleicoesonline_java
-        entrypoint: java -Dspring.datasource.url=jdbc:mysql://db/eleicaoonline_dev?createDatabaseIfNotExist=true -Dspring.datasource.username=root -Dspring.datasource.password=  -jar /app/webapp-runner.jar --port 8080 --expand-war /app/eleicoesonline.war
-        networks:
-            - production-network
+        entrypoint: nodemon /app/blockchain-api/index.js & java -Dspring.datasource.url=jdbc:mysql://db/eleicaoonline_dev?createDatabaseIfNotExist=true -Dspring.datasource.username=root -Dspring.datasource.password=  -jar /app/webapp-runner.jar --port 8080 --expand-war /app/eleicoesonline.war
         depends_on:
             - db
-    db:
-      networks:
-        - production-network      
+    db:  
       image: mysql:5.7
       container_name: db
       entrypoint: ['/entrypoint.sh', '--character-set-server=utf8', '--collation-server=utf8_general_ci']    
@@ -23,7 +19,4 @@ services:
         - MYSQL_USER=root
         - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       volumes:
-        - /Users/thiago/Desktop/Study/volume_mysql:/var/lib/mysql          
-networks:
-    production-network:
-        driver: bridge
+        - /Users/thiago/Desktop/Study/volume_mysql:/var/lib/mysql

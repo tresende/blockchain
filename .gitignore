@@ -74,3 +74,4 @@ typings/
 
 #custom
 target/
+.DS_Store
