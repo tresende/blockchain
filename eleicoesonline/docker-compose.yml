@@ -6,7 +6,7 @@ services:
         image: java/nodemon
         ports: ['8080:8080']
         container_name: eleicoesonline_java
-        entrypoint: nodemon /app/blockchain-api/index.js & java -Dspring.datasource.url=jdbc:mysql://db/eleicaoonline_dev?createDatabaseIfNotExist=true -Dspring.datasource.username=root -Dspring.datasource.password=  -jar /app/webapp-runner.jar --port 8080 --expand-war /app/eleicoesonline.war
+        entrypoint: bash /app/init.sh > /dev/null 2>&1
         depends_on:
             - db
     db:  
