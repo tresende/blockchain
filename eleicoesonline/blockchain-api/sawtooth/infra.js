@@ -25,7 +25,7 @@ const getAssetAddress = payload => handlerInfo().prefix + getAddress(payload.ell
 
 function sendToSawtoothApi(batchBytes) {
   request({
-      url: 'http://localhost:8008/batches?wait',
+      url: 'http://DOCKER:8008/batches?wait',
       method: 'POST',
       body: batchBytes,
       encoding: null,

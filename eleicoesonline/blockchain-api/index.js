@@ -1,6 +1,10 @@
 var restify = require('restify');
-const {registerBlockchain} = require('./sawtooth/client');
+const { registerBlockchain } = require('./sawtooth/client');
 
+const processor = require('./sawtooth/processor');
+const { VoteNHandler } = require('./sawtooth/voteHandler');
+
+processor(new VoteNHandler());
 
 function registerVote(req, res, next) {
   const voto = req.body;
@@ -15,7 +19,7 @@ server.use(restify.plugins.bodyParser());
 
 server.post('/register/vote', registerVote);
 
-server.listen(8084, function() {
+server.listen(8084, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
 
