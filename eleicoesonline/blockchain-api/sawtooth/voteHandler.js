@@ -1,14 +1,8 @@
 'use strict'
 
-const { createHash } = require('crypto')
 const { TransactionHandler } = require('sawtooth-sdk/processor/handler')
 const { Decoder } = require('cbor')
 const { calculateVoteAddress, handlerInfo } = require('./infra');
-
-// Encoding helpers and constants
-const getAddress = (key, length = 64) => {
-  return createHash('sha512').update(key).digest('hex').slice(0, length)
-}
 
 const encode = obj => Buffer.from(JSON.stringify(obj, Object.keys(obj).sort()))
 
