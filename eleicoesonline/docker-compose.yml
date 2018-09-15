@@ -6,7 +6,7 @@ services:
         image: java/nodemon
         ports: ['8080:8080']
         extra_hosts:
-          - "DOCKER:192.168.1.106"
+          - "DOCKER:192.168.2.23"
         container_name: eleicoesonline_java
         entrypoint: bash /app/init.sh > /dev/null 2>&1
         depends_on:
